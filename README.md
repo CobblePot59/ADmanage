@@ -2,6 +2,8 @@
 
 The provided script is a Python program that interacts with an Active Directory (AD) server using the LDAP protocol. It allows you to perform various operations on AD objects such as users, groups, and computers.
 
+:sparkles: Now available on [PyPi](https://pypi.org/project/ADmanage/) :sparkles:
+
 ## General Help
 ![alt text](https://raw.githubusercontent.com/CobblePot59/ADmanage/main/pictures/ADmanage.png)
 
