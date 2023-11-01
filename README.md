@@ -14,7 +14,7 @@ Admanage.py -M get_ADobjects
 #### get_ADobject
 Searches for and returns a specific AD object based on its sAMAccountName value.
 ```sh
-Admanage.py -M get_ADobjects --data 'Administrator'
+Admanage.py -M get_ADobject --data 'Administrator'
 ```
 #### add_ADobject
 Adds users, computers, or groups to the AD server.
