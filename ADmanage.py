@@ -1,4 +1,5 @@
 import argparse
+import json
 import ldap3
 from ldap3 import Server, Connection, ALL, LEVEL, MODIFY_ADD, MODIFY_DELETE, MODIFY_REPLACE
 
@@ -38,6 +39,8 @@ def get_ADobject(_object):
 
 # Adding users, computers or groups
 def add_ADobject(ou, attributes):
+    attributes = json.loads(str(attributes).replace("'", "\""))
+
     if attributes['objectClass'] == 'user':
         sam = f"{attributes['givenName'].lower()[0]}{attributes['sn'].lower()}"
         cn = f"{attributes['givenName']} {attributes['sn']}"
@@ -51,19 +54,15 @@ def add_ADobject(ou, attributes):
         attributes['cn'] = cn
         attributes['userPrincipalName'] = f"{sam}@{domain}"
 
-        search_filter = f"(&(objectClass=user)(sAMAccountName={sam}))"
         conn.add(f"cn={cn},{ou}", attributes=attributes)
-
         reset_password(sam, password)
         modify_ADobject_attributes(sam, attributes={'userAccountControl': '512'})
-        
- 
+
     if attributes['objectClass'] == 'computer':
         sam = f"{attributes['cn'].lower()}$"
         cn = attributes['cn']
         attributes['sAMAccountName'] = sam
 
-        search_filter = f"(&(objectClass=computer)(sAMAccountName={sam}))"
         conn.add(f"cn={cn},{ou}", attributes=attributes)
 
 
@@ -78,15 +77,14 @@ def add_ADobject(ou, attributes):
         }
 
         modify_ADobject_attributes(sam, changes)
-    
+
     if attributes['objectClass'] == 'group':
         sam = f"{attributes['cn'].lower()}"
         cn = attributes['cn']
         attributes['sAMAccountName'] = sam
-        
-        search_filter = f"(&(objectClass=group)(sAMAccountName={sam}))"
+
         conn.add(f"cn={cn},{ou}", attributes=attributes)
-       
+
     return get_ADobject(sam)
 
 
@@ -105,7 +103,6 @@ def get_member(group_name):
 
     if conn.entries:
         return conn.entries[0].member
-    
 
 # List groups of users
 def get_memberOf(username):
@@ -122,7 +119,6 @@ def add_ADobject_to_group(_object, group):
     group_dn = get_ADobject(group).distinguishedName
 
     conn.modify(group_dn[0], {'member': [(MODIFY_ADD, [_object_dn[0]])]})
-    
     return get_ADobject(group).member
 
 
@@ -132,17 +128,17 @@ def del_ADobject_from_group(_object, group):
     group_dn = get_ADobject(group).distinguishedName
 
     conn.modify(group_dn[0], {'member': [(MODIFY_DELETE, _object_dn[0])]})
-    
     return get_ADobject(group).member
 
 
 # Updating user, computer, or group attributes.
 def modify_ADobject_attributes(_object, attributes):
+    attributes = json.loads(str(attributes).replace("'", "\""))
+
     _object_dn = get_ADobject(_object).distinguishedName
 
     for key, value in attributes.items():
         conn.modify(_object_dn[0], {key: [(MODIFY_REPLACE, [value])]})
-    
     return get_ADobject(_object)
 
 
