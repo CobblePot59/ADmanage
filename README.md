@@ -21,13 +21,13 @@ Admanage.py -M get_ADobject --data 'Administrator'
 #### add_ADobject
 Adds users, computers, or groups to the AD server.
 ```sh
-Admanage.py -M add_ADobject ---data 'OU=test,DC=cobblepot59,DC=int' {'objectClass': 'user', 'givenName': 'Jack', 'sn': 'Bower', 'password': 'Password1'}
+Admanage.py -M add_ADobject ---data 'OU=test,DC=cobblepot59,DC=int' "{'objectClass': 'user', 'givenName': 'Jack', 'sn': 'Bower', 'password': 'Password1'}"
 ```
 ```sh
-Admanage.py -M add_ADobject --data 'OU=test,DC=cobblepot59,DC=int' {'objectClass': 'computer', 'cn': 'jbower-pc'}
+Admanage.py -M add_ADobject --data 'OU=test,DC=cobblepot59,DC=int' "{'objectClass': 'computer', 'cn': 'jbower-pc'}"
 ```
 ```sh
-Admanage.py -M add_ADobject --data 'OU=test,DC=cobblepot59,DC=int' {'objectClass': 'group', 'cn': '24hChrono'}
+Admanage.py -M add_ADobject --data 'OU=test,DC=cobblepot59,DC=int' "{'objectClass': 'group', 'cn': '24hChrono'}"
 ```
 #### del_ADobject
 Deletes a specified AD object.
@@ -60,7 +60,7 @@ Admanage.py -M del_ADobject_from_group --data 'jbower' 'test'
 #### modify_ADobject_attributes
 Modifies attributes of a specified AD object.
 ```sh
-Admanage.py -M modify_ADobject_attributes --data 'jbower' {'mail': 'jack.bower@cobblepot59.int'}
+Admanage.py -M modify_ADobject_attributes --data 'jbower' "{'mail': 'jack.bower@cobblepot59.int'}"
 ```
 #### reset_password
 Resets the password of a user (works with SSL bind).
