@@ -1,3 +1,5 @@
+[![Archived](https://img.shields.io/badge/maintenance_mode-%F0%9F%9A%A7-grey.svg?labelColor=orange)]() No maintenance support, you can use other alternatives like bloodyAD.
+
 # ADmanage
 
 The provided script is a Python program that interacts with an Active Directory (AD) server using the LDAP protocol. It allows you to perform various operations on AD objects such as users, groups, and computers.
