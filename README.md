@@ -81,6 +81,6 @@ Admanage.py -M disable_ADobject --data 'jbower-pc$'
 ```
 
 ## Maintenance Mode
-There is no active development & new major features are not planned.
+There is no active development & new major features are not planned.   
 You can use other alternatives like [bloodyAD](https://github.com/CravateRouge/bloodyAD).
 
