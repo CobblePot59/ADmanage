@@ -1,4 +1,4 @@
-[![Archived](https://img.shields.io/badge/maintenance_mode-%F0%9F%9A%A7-grey.svg?labelColor=orange)]() No maintenance support, you can use other alternatives like bloodyAD.
+[![Archived](https://img.shields.io/badge/maintenance_mode-%F0%9F%9A%A7-grey.svg?labelColor=orange)](https://github.com/CobblePot59/ADmanage#maintenance-mode) No maintenance support, you can use other alternatives like bloodyAD.
 
 # ADmanage
 
@@ -79,3 +79,8 @@ Disables a user or computer account.
 ```sh
 Admanage.py -M disable_ADobject --data 'jbower-pc$'
 ```
+
+## Maintenance Mode
+There is no active development & new major features are not planned.
+You can use other alternatives like [bloodyAD](https://github.com/CravateRouge/bloodyAD).
+
