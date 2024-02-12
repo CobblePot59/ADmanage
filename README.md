@@ -1,4 +1,4 @@
-[![Archived](https://img.shields.io/badge/maintenance_mode-%F0%9F%9A%A7-grey.svg?labelColor=orange)](https://github.com/CobblePot59/ADmanage#maintenance-mode) No maintenance support, you can use other alternatives like bloodyAD.
+[![Maintenance mode](https://img.shields.io/badge/maintenance_mode-%F0%9F%9A%A7-grey.svg?labelColor=orange)](https://github.com/CobblePot59/ADmanage#maintenance-mode)
 
 # ADmanage
 
