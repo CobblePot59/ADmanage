@@ -355,18 +355,14 @@ if __name__ == '__main__':
     sam = f"{username}@{domain}"
     password = args.password
     dc_ip = args.dc_ip
-    base_dn = args.base_dn
+    base_dn = args.base_dn or f"DC={domain.split('.')[0]},DC={domain.split('.')[1]}"
 
-    domainroot = f"DC={domain.split('.')[0]},DC={domain.split('.')[1]}"
     dnsroot = f"DC={domain},CN=MicrosoftDNS,DC=DomainDnsZones,{domainroot}"
 
     if args.secure:
         dc_url = f"ldaps://{dc_ip}:636"
     else:
         dc_url = f"ldap://{dc_ip}:389"
-
-    if not base_dn:
-        base_dn = domainroot
 
     server = Server(dc_url, get_info=ALL)
     conn = Connection(server, user=sam, password=password, auto_bind=True)
