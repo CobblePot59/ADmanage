@@ -23,7 +23,7 @@ ADmanage.py -M get_DNSentry --data 'quad9'
 #### add_DNSentry
 Adds entry to the DNS server.
 ```sh
-ADmanage.py -M add_DNSentry ---data 'quad9' '149.112.112.112'
+ADmanage.py -M add_DNSentry --data 'quad9' '149.112.112.112'
 ```
 #### modify_DNSentry
 Modifies attributes of a specified DNS entry.
@@ -49,7 +49,7 @@ ADmanage.py -M get_ADobject --data 'Administrator'
 #### add_ADobject
 Adds users, computers, or groups to the AD server.
 ```sh
-ADmanage.py -M add_ADobject ---data 'OU=test,DC=cobblepot59,DC=int' "{'objectClass': 'user', 'givenName': 'Jack', 'sn': 'Bower', 'password': 'Password1'}"
+ADmanage.py -M add_ADobject --data 'OU=test,DC=cobblepot59,DC=int' "{'objectClass': 'user', 'givenName': 'Jack', 'sn': 'Bower', 'password': 'Password1'}"
 ```
 ```sh
 ADmanage.py -M add_ADobject --data 'OU=test,DC=cobblepot59,DC=int' "{'objectClass': 'computer', 'cn': 'jbower-pc'}"
