@@ -268,7 +268,7 @@ def get_memberOf(username):
 # Adding users, computers, or groups to groups
 def add_ADobject_to_group(_object, group):
     if not get_ADobject(_object) or not get_ADobject(group):
-        return "Group or User doesn't exist"
+        return "Group, User or Computer doesn't exist"
 
     _object_dn = get_ADobject(_object)['distinguishedName']
     group_dn = get_ADobject(group)['distinguishedName']
@@ -280,7 +280,7 @@ def add_ADobject_to_group(_object, group):
 # Removing users, computers, or groups from groups
 def del_ADobject_from_group(_object, group):
     if not get_ADobject(_object) or not get_ADobject(group):
-        return "Group or User doesn't exist"
+        return "Group, User or Computer doesn't exist"
 
     _object_dn = get_ADobject(_object)['distinguishedName']
     group_dn = get_ADobject(group)['distinguishedName']
