@@ -106,10 +106,10 @@ def get_DNSentry(target):
     if not get_raw_entry(target):
         return "Entry doesn't exist"
 
-        record_data = get_raw_entry(target)['raw_attributes']['dnsRecord'][0][-4:]
-        parsed_record = DNS_RPC_RECORD_A(record_data)
-        ip_address = parsed_record.formatCanonical()      
-        return {'name': get_raw_entry(target)['attributes']['name'], 'ip': ip_address}
+    record_data = get_raw_entry(target)['raw_attributes']['dnsRecord'][0][-4:]
+    parsed_record = DNS_RPC_RECORD_A(record_data)
+    ip_address = parsed_record.formatCanonical()      
+    return {'name': get_raw_entry(target)['attributes']['name'], 'ip': ip_address}
 
 
 def add_DNSentry(target, data):
