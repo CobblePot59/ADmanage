@@ -65,10 +65,10 @@ ADmanage.py -M del_ADobject --data 'jbower'
 ```sh
 ADmanage.py -M del_ADobject --data 'jbower-pc$'
 ```
-#### get_member
+#### get_members
 Retrieves the members of a specified group.
 ```sh
-ADmanage.py -M get_member --data 'Administrators'
+ADmanage.py -M get_members --data 'Administrators'
 ```
 #### get_memberOf
 Retrieves the groups to which a user belongs.
