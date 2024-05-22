@@ -1,7 +1,7 @@
 import argparse
 import json
 import ldap3
-from ldap3 import Server, Connection, ALL, SUBTREE, LEVEL, MODIFY_ADD, MODIFY_DELETE, MODIFY_REPLACE, NTLM
+from ldap3 import Server, Connection, ALL, SUBTREE, LEVEL, MODIFY_ADD, MODIFY_DELETE, MODIFY_REPLACE, NTLM, SIMPLE
 from impacket.structure import Structure
 import socket
 import dns.resolver
@@ -394,7 +394,7 @@ if __name__ == '__main__':
 
     domain = args.domain
     username = args.username
-    sam = f"{domain}\\{username}"
+    sam = f"{domain.split('.')[0]}\\{username}"
     password = args.password or args.hashes or getpass("Password:")
     dc_ip = args.dc_ip
     domain_root = f"DC={domain.split('.')[0]},DC={domain.split('.')[1]}"
@@ -402,13 +402,14 @@ if __name__ == '__main__':
 
     dnsroot = f"DC={domain},CN=MicrosoftDNS,DC=DomainDnsZones,{domain_root}"
 
+    dc_url = f"ldap://{self.dc_ip}:389"
+    auth = NTLM
     if args.secure:
-        dc_url = f"ldaps://{dc_ip}:636"
-    else:
-        dc_url = f"ldap://{dc_ip}:389"
+        auth = SIMPLE
+        dc_url = f"ldaps://{self.dc_ip}:636"
 
-    server = Server(dc_url, get_info=ALL)
-    conn = Connection(server, user=sam, password=password, authentication=NTLM, auto_bind=True)
+    server = Server(dc_url, use_ssl=args.secure, get_info=ALL)
+    conn = Connection(server, user=sam, password=password, authentication=auth, auto_bind=True)
 
     module = args.module
     selected_function = module_functions.get(module, None)
