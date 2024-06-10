@@ -402,11 +402,11 @@ if __name__ == '__main__':
 
     dnsroot = f"DC={domain},CN=MicrosoftDNS,DC=DomainDnsZones,{domain_root}"
 
-    dc_url = f"ldap://{self.dc_ip}:389"
+    dc_url = f"ldap://{dc_ip}:389"
     auth = NTLM
     if args.secure:
         auth = SIMPLE
-        dc_url = f"ldaps://{self.dc_ip}:636"
+        dc_url = f"ldaps://{dc_ip}:636"
 
     server = Server(dc_url, use_ssl=args.secure, get_info=ALL)
     conn = Connection(server, user=sam, password=password, authentication=auth, auto_bind=True)
